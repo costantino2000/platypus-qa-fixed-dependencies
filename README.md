@@ -24,13 +24,14 @@ Then create a virtual environment and activate it:
 python3 -m virtualenv -p=/usr/bin/python3.6 env &&
 source env/bin/activate
 ```
-Now you will need to manually install the dependencies with pip. I discovered that by using the default setup script some of the dependencies of the dependencies won't install (but the setup will still end, bringing problems later), and that installing them manually solved the problem (sympy is a dependency of calchas, it must be installed before it or it will download an incompatible version):
+Now you will need to manually install the dependencies with pip. I discovered that by using the default setup script some of the dependencies of the dependencies won't install (but the setup will still end, bringing problems later), and that installing them manually solved the problem (sympy is a dependency of calchas and werkzeug is a dependency of flask, they must be installed before them or it will download incompatible versions):
 ```
 pip install spacy==1.8.2 &&
 pip install requests==2.18.1 &&
 pip install dateparser==0.6.0 &&
 pip install langdetect==1.0.7 &&
 pip install PyLD==0.7.2 &&
+pip install werkzeug==0.16.1 &&
 pip install Flask==0.12.2 &&
 pip install flask-swaggerui==0.0.1 &&
 pip install flask-cors==3.0.3 &&
