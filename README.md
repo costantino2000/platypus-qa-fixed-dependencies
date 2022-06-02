@@ -31,7 +31,7 @@ pip install requests==2.18.1 &&
 pip install dateparser==0.6.0 &&
 pip install langdetect==1.0.7 &&
 pip install PyLD==0.7.2 &&
-pip install werkzeug==0.16.1 &&
+pip install werkzeug==0.12.2 &&
 pip install Flask==0.12.2 &&
 pip install flask-swaggerui==0.0.1 &&
 pip install flask-cors==3.0.3 &&
