@@ -1,7 +1,7 @@
 Platypus QA - fixed dependencies fork
 ===========
 
-This is a fork of the Platypus Question Answering System. The original has not been updated since the 5th of July 2017, and because of this the installation and server running processes are "broken", which means they search for pip dependencies that, in their actual version, require a python version greater than 3.6, the highest supported version of the service.
+This is a fork of the Platypus Question Answering System. The original has not been updated since the 5th of July 2017, and because of this the installation and server running processes are "broken", which means they search for pip dependencies that, in their actual version, require a python version greater than 3.6, the highest supported version of the service. This fork has the same code as the original repo, the only difference is this guide I wrote.
 
 Since I had to use the program for a University project, I had this problem, and I began searching in https://pypi.org/ the working versions of the pip packages. After lots of fails I finally settled for the last versions of the packages located in the file "requirements.txt" that were released just before the date of the last commit (5 July 2017). I decided to fork the repo and write this guide to help people that like me might face the same problems, so that they might find this guide and maybe fix the issue.
 
