@@ -3,15 +3,19 @@ Platypus QA - fixed dependencies fork
 
 This is a fork of the Platypus Question Answering System. The original has not been updated since the 5th of July 2017, and because of this the installation and server running processes are "broken", which means they search for pip dependencies that, in their actual version, require a python version greater than 3.6, the highest supported version of the service.
 
-Since I had to use the program for a University project, I had this problem, and I began searching in https://pypi.org/ the working versions of the pip packages. After lots of fails I finally settled for the last versions of the packages located in the file "requirements.txt" that were released just before the date of the last commit (5 July 2017). I decided to fork the repo and write this guide to help people that like me might face the same problems, so that they might find this guide and maybe fix the issue.
+Since I had to use the program for a University project (after that I stopped because it didn't support what I needed), I had this problem, and I began searching in https://pypi.org/ the working versions of the pip packages. After lots of fails I finally settled for the last versions of the packages located in the file "requirements.txt" that were released just before the date of the last commit (5 July 2017). I decided to fork the repo and write this guide to help people that like me might face the same problems, so that they might find this guide and maybe fix the issue.
 
-Disclaimer: I am not an expert. There are probably better ways to fix this problem, I just wanted to share the solution I found to help people with my same problem. If this doesn't work for you or you know a better solution feel free to let me know in the issues or discussion tabs, just keep in mind that I'm not an expert in Question Answering services and Python, but I'll try to help when I can.
+Disclaimer: I am not an expert. There are probably better ways to fix this problem, I just wanted to share the solution I found to help people with my same problem. If this doesn't work for you or you know a better solution feel free to let me know in the issues or discussion tabs, just keep in mind that I'm not an expert in Question Answering services and Python, but I'll try to help when I can.<br /><br />
+<b>While the web interface of the API works, making a query will cause the system to crash, so it's still not fully functional.</b> If anyone is able to find the cause is welcomed to make a pull request, this is where I stopped.
 
 ## Install and run
 
 Tested on 17 May 2022 on Ubuntu 20.04.4 WSL (Windows Subsystem for Linux).
 
-First, extract the folder with the source code where you want, then open the terminal inside it (shift -> right mouse click inside the folder -> open linux shell here). You will need to have installed python 3.6 with the dev and distutil packages, virtualenv, gcc and g++. These are the commands needed from a clean installation of wsl (add -y at the end of the lines if you want bypass the confimation prompt):
+First, extract the folder with the source code where you want, then open the terminal inside it (shift -> right mouse click inside the folder -> open linux shell here). You will need to have installed python 3.6 with the dev and distutil packages, virtualenv, gcc and g++. These are the commands needed from a clean installation of wsl (add -y at the end of the lines if you want bypass the confirmation prompt):
+
+<b>2 September 2022 Update</b>: After trying to replicate the steps in a virtual machine with Linux Mint 21, I found out that the deadsnakes repository method doesn't work, scroll down until before the original readme for the pyenv guide.
+
 ```
 sudo apt update &&
 sudo apt upgrade &&
@@ -45,7 +49,30 @@ Finally you can run the installation script and the server:
 python3 setup.py install &&
 python3 flask_server.py
 ```
-This should work, let me know if I made typos, the command don't work or if you want to add a guide for other environments than wsl.
+This should make the web interface work on localhost:8080, let me know if I made any typos, the commands don't work or if you want to add a guide for other environments beside WSL.
+<br /><br />
+
+<b>Pyenv method</b> (if the deadsnakes repository method does not work):
+```
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl &&
+curl https://pyenv.run | bash
+```
+Open the file .bashrc in your home directory and append at the end:
+```
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+```
+Close and reopen your shell and install Python 3.6:
+```
+env CFLAGS=-O2 pyenv install 3.6.15 &&
+env CFLAGS=-O2 pyenv install 3.6-dev
+```
+You can now create the virtual environment from inside the Platypus folder:
+```
+pyenv virtualenv 3.6.15 env-platypus &&
+source ~/.pyenv/versions/env-platypus/bin/activate
+```
 
 
 Original README
